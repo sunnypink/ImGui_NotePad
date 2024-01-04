@@ -1,0 +1,2 @@
+#define ImGuiCMake_VERSION_MAJOR @ImGuiCMake_VERSION_MAJOR@
+#define ImGuiCMake_VERSION_MINOR @ImGuiCMake_VERSION_MINOR@
