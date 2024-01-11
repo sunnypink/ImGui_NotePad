@@ -17,7 +17,7 @@ public:
         std::string name;
         std::string extension;
         std::string size;
-        std::filesystem::file_time_type::clock::time_point time;
+        std::filesystem::file_time_type last_modified_time;
         std::string type;
         std::string owner;
         std::string ownerGroup;
@@ -25,26 +25,37 @@ public:
     };
    struct dirInfo
     {
-        std::string path;
+    	std::filesystem::path currentPath;
+    	std::filesystem::path subFolderPath;
+        std::string subPath;
         std::string name;
+		std::string extension;
+		int number_subitem;
+        std::filesystem::file_time_type last_modified_time;
         std::string permission;
     };
 
     struct directory_content_info
     {
+	    std::vector<std::filesystem::path> rootPathList;
         std::vector<struct dirInfo> dirList;
         std::vector<struct fileInfo> fileList;
     };
 
 private:
 
-    void m_DirectoryShowContent(void);
-    void m_DirectoryRemove(struct dirInfo const &info);
-    void m_FileRemove(struct fileInfo const &info);
-    void m_DirectoryCreate(void);
-    void m_FileCreate(void);
-    void m_DirectoryRename(struct dirInfo const &info);
-    void m_FileRename(struct fileInfo const &info);
+    void ReadDirectoryList(void);
+    void DirectoryShowContent(void);
+    void DirectoryRemove(struct dirInfo const &info);
+    void FileRemove(struct fileInfo const &info);
+    void DirectoryCreate(void);
+    void FileCreate(void);
+    void DirectoryRename(struct dirInfo const &info);
+    void FileRename(struct fileInfo const &info);
+   // const int CheckSubItemCount(struct dirInfo const &info);
+    //void iterateDirectory(const std::filesystem::path& dirPath,int* itemCount);
+    void PreviewSubItem(std::filesystem::path const &path,int* itemCount);
+    void RootPathList(std::filesystem::path const &currentpath,std::vector<std::filesystem::path>& rootPathList);
 
     
 #if 0 // TODO implement later    
@@ -62,14 +73,16 @@ public:
 
     
 
-    struct directory_content_info GetDirectoryInfo(void) const;
+    const struct directory_content_info& GetDirectoryInfo(void);
     void SetDirectoryInfo(struct directory_content_info const &info);
 
-        FileManager() : m_dirContentInfo(directory_content_info{})
-        {};
+        FileManager()
+        {
+        	ReadDirectoryList();
+        };
 
-    void FileManage_Test(void);
-    void FileManage_Print(void);
+    //void FileManage_Test(void);
+    //void FileManage_Print(void);
 
 };
 

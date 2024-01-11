@@ -7,13 +7,15 @@ add_library(ImGui OBJECT imgui.cpp
                         ../Headers/imstb_rectpack.h
                         ../Headers/imstb_textedit.h
                         ../Headers/imgui_impl_glfw.h
-                        ../Headers/imgui_impl_opengl3.h				
+                        ../Headers/imgui_impl_opengl3.h
+                        ../Headers/FileManager.hpp		
 						imgui_menu.cpp
 						ImGui_FileManager.cpp
 						ImGui_FileManager.hpp						
 						imgui_draw.cpp
 						imgui_tables.cpp 
 						imgui_widgets.cpp
+						../driver/FileManager.cpp
 						ImGui_Imple/imgui_impl_glfw.cpp
 						ImGui_Imple/imgui_impl_opengl3.cpp	
 						)
